@@ -1,0 +1,15 @@
+services:
+  app:
+    build: ./.docker/app
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+  mongodb:
+    build:
+      context: ./.docker/mongodb
+      args:
+        MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+        MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    ports:
+      - 27017:27017
